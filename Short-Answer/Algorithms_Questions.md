@@ -7,8 +7,8 @@ pseudocode with respect to the input size n of each of the following:
 
 ```python
 a)  a = 0
-    while (a < n * n * n):
-      a = a + n * n
+    while (a < n * n * n): #n^3 increase
+      a = a + n * n        #n^2 increase
 ```
 
 
@@ -16,7 +16,7 @@ a)  a = 0
 b)  sum = 0
     for i in range(n): #linear
       j = 1
-      while j < n: #log
+      while j < n: #log because j is increase exponentially so while n may get large, the number of cycles in this loop doesn't grow nearly as quickly and it takes more and more increaes to n to yeild an increase in the sum
         j *= 2
         sum += 1
 ```

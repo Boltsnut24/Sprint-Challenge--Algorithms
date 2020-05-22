@@ -17,3 +17,5 @@ c) O(n)
 3. If an egg does not break, go up in floors until you are mid way between the floor you dropped this egg from and the lowest floor an egg has broken from.
 4. repeat steps 1/2 as necessary until there are no floors left you haven't dropped an egg from that fit within that range. At this point, the highest floor you have dropped an egg from is floor f.
 
+Runtime is O(log n)
+
