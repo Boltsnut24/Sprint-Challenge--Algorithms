@@ -8,21 +8,18 @@ class SortingRobot:
         self._position = 0      # The list position the robot is at
         self._light = "OFF"     # The state of the robot's light
         self._time = 0          # A time counter (stretch)
-
     def can_move_right(self):
         """
         Returns True if the robot can move right or False if it's
         at the end of the list.
         """
         return self._position < len(self._list) - 1
-
     def can_move_left(self):
         """
         Returns True if the robot can move left or False if it's
         at the start of the list.
         """
         return self._position > 0
-
     def move_right(self):
         """
         If the robot can move to the right, it moves to the right and
@@ -35,7 +32,6 @@ class SortingRobot:
             return True
         else:
             return False
-
     def move_left(self):
         """
         If the robot can move to the left, it moves to the left and
@@ -48,7 +44,6 @@ class SortingRobot:
             return True
         else:
             return False
-
     def swap_item(self):
         """
         The robot swaps its currently held item with the list item in front
@@ -58,7 +53,6 @@ class SortingRobot:
         self._time += 1
         # Swap the held item with the list item at the robot's position
         self._item, self._list[self._position] = self._list[self._position], self._item
-
     def compare_item(self):
         """
         Compare the held item with the item in front of the robot:
@@ -75,7 +69,6 @@ class SortingRobot:
             return -1
         else:
             return 0
-
     def set_light_on(self):
         """
         Turn on the robot's light
@@ -93,11 +86,63 @@ class SortingRobot:
         return self._light == "ON"
 
     def sort(self):
-        """
-        Sort the robot's list.
-        """
-        # Fill this out
-        pass
+        #pick up initial item
+        # self.swap_item()
+
+        # for i in range(len(list)):
+        #     self.move_right()
+
+        #     if(self.compare_item() == 1):
+        #         self.swap_item()
+
+        #         while(self.can_move_left()):
+        #             self.move_left()
+
+        #             if(self.compare_item() == 1):
+        #                 self.swap_item()
+        #             elif(self.compare_item() == None):
+        #                 self.swap_item()
+        while True:
+            #initial pick up so we have something to compare
+            self.swap_item()
+            self.move_right()
+
+            #perform a swap if items are out of order
+            if compare_item() == 1:
+                self.swap_item()
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+
+                #flag so robot knows it isn't necessarily done yet
+                self.set_light_on()
+
+            #item was in it's correct place relative to the next item in the list
+            else:
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+
+            #are we at the end of the list on this pass through?
+            if not self.can_move_right():
+
+                #check if had to swap on this pass through, if we did we may not be done yet
+                if self.light_is_on():
+                    self.set_light_off()
+
+                    #reset robot to beginning of list for another run through
+                    while self.can_move_left():
+                        self.move_left()
+                #if we didn't swap anything this pass through our list must be sorted and we are done
+                else:
+                    break         
+
+            #compare current index and next index
+                #if next > current, move right, swap item, move left, swap item, you are now holding the less index
+                #move right, compare currently held item to next item, if it is less than, swap where you are and move right
+                #else move right, swap, move left, swap, move right
+            #continue until end of list
+        
 
 
 if __name__ == "__main__":
